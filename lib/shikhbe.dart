@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_mobile_app/constant/color_constant.dart';
 import 'package:learning_mobile_app/tutorial.dart';
 class ShikhbeScreen extends StatefulWidget {
   const ShikhbeScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _ShikhbeScreenState extends State<ShikhbeScreen> {
                   child: Container(
                     height: 70,width: 70,
                     decoration: BoxDecoration(
-                    color: Colors.blue[900],
+                    color: ColorConstants.buttonColor,
                     ),
                     child: const Icon(Icons.arrow_forward,color: Colors.white,size: 30),
                   ),

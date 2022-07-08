@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learning_mobile_app/constant/color_constant.dart';
+import 'bottom_navigator_screen.dart';
 import 'mobile_number_enter.dart';
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({Key? key}) : super(key: key);
@@ -11,7 +13,7 @@ class OtpVerificationScreen extends StatefulWidget {
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: ColorConstants.backgroundColor,
       body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -22,12 +24,17 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     InkWell(onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const MobileNumberScreen()));
                     },
-                        child: Icon(Icons.arrow_back,color: Colors.blue[900],size: 30,)),
+                        child: Icon(Icons.arrow_back,
+                          color: Colors.blue[900],
+                          size: 30)),
                     Column(
                       children: [
                         const SizedBox(height: 40,),
-                        Text("Verification",style: TextStyle(
-                          color: Colors.blue[900],fontSize: 20,fontWeight: FontWeight.bold,
+                        Text("Verification",
+                            style: TextStyle(
+                              color: Colors.blue[900],
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                         )),
                         const SizedBox(height: 15),
                         const Text('We text you 4 digit code for'),
@@ -42,8 +49,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   padding: const EdgeInsets.all(20.0),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        height: 50,width: 50,
+                      Container(
+                        height: 50,width: 50,decoration: BoxDecoration(
+                          color: ColorConstants.otpbuttonbackgroundColor,
+                      borderRadius: BorderRadius.circular(10)
+                      ),
+
                         child: TextField(
                           decoration: const InputDecoration(
                             filled: true,
@@ -62,8 +73,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 50,width: 50,
+                      Container(
+                        height: 50,width: 50,decoration: BoxDecoration(
+                        color: ColorConstants.otpbuttonbackgroundColor,
+                        borderRadius: BorderRadius.circular(10)
+                      ),
                         child: TextField(
                           decoration: const InputDecoration(
                               filled: true,
@@ -82,8 +96,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 50,width: 50,
+                      Container(
+                        height: 50,width: 50,decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: ColorConstants.otpbuttonbackgroundColor
+                      ),
                         child: TextField(
                           decoration: const InputDecoration(
                             filled: true,
@@ -102,8 +119,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      Container(
                         height: 50,width: 50,
+                        decoration: BoxDecoration(
+                          color: ColorConstants.otpbuttonbackgroundColor,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
                         child: TextField(
                           decoration: const InputDecoration(
                             filled: true,
@@ -128,13 +149,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
                 const SizedBox(height: 50),
                 InkWell(onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => OtpVerificationScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavigatorScreen()));
                 },
                   child: Container(
                     padding: const EdgeInsets.all(17),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue[900]),
+                        color: ColorConstants.buttonColor),
                     child: const Center(
                       child: Text('Confirm',
                           style: TextStyle(

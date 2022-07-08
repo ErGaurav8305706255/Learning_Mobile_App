@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_mobile_app/constant/string_constant.dart';
 import 'package:learning_mobile_app/signup.dart';
 class TutorialScreen extends StatefulWidget {
   const TutorialScreen({Key? key}) : super(key: key);
@@ -29,13 +30,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     children: [
                       TextButton(onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen()));
-                        }, child: const Text('Skip',style: TextStyle(
-                        fontSize: 18,fontWeight: FontWeight.bold
+                        }, child: Text(
+                        StringConstants.skip,
+                        style: TextStyle(
+                        fontSize: 18,
+                            fontWeight: FontWeight.bold
                       ),)),
                       TextButton(onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen()));
-                        }, child: const Text('Next',style: TextStyle(
-                        fontSize: 18,fontWeight: FontWeight.bold
+                        }, child: Text(
+                        StringConstants.next,
+                        style: TextStyle(
+                        fontSize: 18,
+                            fontWeight: FontWeight.bold
                       ),)),
                     ],
                   )

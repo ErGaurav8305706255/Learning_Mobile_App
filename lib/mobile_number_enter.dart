@@ -1,9 +1,10 @@
-
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learning_mobile_app/constant/color_constant.dart';
+import 'package:learning_mobile_app/constant/string_constant.dart';
 import 'package:learning_mobile_app/signup.dart';
-import 'package:learning_mobile_app/validate.dart';
+import 'package:learning_mobile_app/constant/validate.dart';
 import 'otp_verification.dart';
 class MobileNumberScreen extends StatefulWidget {
   const MobileNumberScreen({Key? key}) : super(key: key);
@@ -14,11 +15,14 @@ class MobileNumberScreen extends StatefulWidget {
 
 class _MobileNumberScreenState extends State<MobileNumberScreen> {
 
-  TextEditingController textMobileNumberController = TextEditingController();
+  // TextEditingController textMobileNumberController = TextEditingController();
+
+   var _formKey = GlobalKey<FormState>();
+  var value = '';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: ColorConstants.backgroundColor,
       body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,9 +37,10 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                     Column(
                       children: [
                         const SizedBox(height: 40,),
-                        Text("Let's Get Started",style: TextStyle(
-                          color: Colors.blue[900],fontSize: 20,fontWeight: FontWeight.bold,
-                        )),
+                        Text("Let's Get Started",
+                            style: TextStyle(
+                              color: Colors.blue[900],fontSize: 20,fontWeight: FontWeight.bold,
+                            )),
                         const SizedBox(height: 15),
                         const Text('Enter Your Mobile Number'),
                         const Text('and enable 2 step verification')
@@ -47,9 +52,9 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                 const SizedBox(height: 50),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
+                  decoration: BoxDecoration(color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black)
+                    border: Border.all(color: Colors.grey)
                 ),
                   child: Row(
                     children: [
@@ -62,17 +67,21 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                         height: 30,
                       ),
                       Expanded(
-                        child: TextField(
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(10)
-                          ],
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
+                        child: Form(key: _formKey,
+                          child: TextFormField(
+                            validator: Validate.validateMobileAddress,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(10)
+                            ],
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.transparent,
-                              hintText: 'Mobile number',border: InputBorder.none,
+                              hintText: StringConstants.mobile,
+                              border: InputBorder.none,
                             ),
-                          controller: textMobileNumberController,
+                            // controller: textMobileNumberController,
+                          ),
                         ),
                       ),
                     ],
@@ -80,29 +89,17 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                 ),
                 const SizedBox(height: 50),
                 InkWell(onTap: () {
-                  if(textMobileNumberController.text.isNotEmpty){
-                    String? msg6 = Validate.validateMobileAddress(textMobileNumberController.text);
-                    if(msg6 == null){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const OtpVerificationScreen()));
-                    }
-                    else{
-                      var snackBar = SnackBar(
-                          content: Text(msg6));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  }
-                  else{
-                    var snackBar = const SnackBar(content: Text('Enter your Mobile Number'));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => OtpVerificationScreen()));
                   }
                 },
                   child: Container(
                     padding: const EdgeInsets.all(17),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue[900]),
-                    child: const Center(
-                      child: Text('Continue',
+                        color: ColorConstants.buttonColor),
+                    child: Center(
+                      child: Text(StringConstants.conti,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
